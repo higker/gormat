@@ -36,11 +36,11 @@ jobs:
         && sudo apt-get install build-essential libgl1-mesa-dev
         && sudo apt-get install freeglut3-dev
 
+    - name: Test
+      run: go test -v ./... -coverprofile coverage.out -covermode atomic
+
     - name: Build
       run: cd cmd && go build -v .
-
-    - name: Test
-      run: cd configs && go test -v ./... -coverprofile coverage.out -covermode atomic
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
